@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('site_contatos', function (Blueprint $table) {
+        Schema::create('produto_detalhes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('produto_id');
+            $table->float('comprimento',8 , 2);
+            $table->float('largura',8 , 2);
+            $table->float('altura',8 , 2);
             $table->timestamps();
-            $table->string('nome', 50);
-            $table->string('telefone', 14);
-            $table->string('email', 80);
-            $table->integer('motivo_contato');
-            $table->text('mensagem');
+
+            $table->foreign('produto_id')->references('id')->on('produtos');
+            $table->unique('produto_id');
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('site_contatos');
+        Schema::dropIfExists('produto_detalhes');
     }
 };

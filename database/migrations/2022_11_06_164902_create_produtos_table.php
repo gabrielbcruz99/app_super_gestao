@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('site_contatos', function (Blueprint $table) {
+        Schema::create('produtos', function (Blueprint $table) {
             $table->id();
+            $table->string('nome', 100);
+            $table->string('descricao')->nullable();
+            $table->string('peso')->nullable();
+            $table->float('preco_venda', 8,2)->default(0.01);
+            $table->integer('estoque_minimo')->default(1);
+            $table->integer('estoque_maximo')->default(1);
             $table->timestamps();
-            $table->string('nome', 50);
-            $table->string('telefone', 14);
-            $table->string('email', 80);
-            $table->integer('motivo_contato');
-            $table->text('mensagem');
+
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('site_contatos');
+        Schema::dropIfExists('produtos');
     }
 };
