@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fornecedores', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome', 50);
-            $table->timestamps();
+        Schema::table('fornecedores', function (Blueprint $table) {
+            $table->softDeletes();
 
         });
     }
@@ -28,6 +26,11 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fornecedores');
+        Schema::table('fornecedores', function(Blueprint $table){
+            //para remover colunas
+            //$table->dropColumn('uf');
+            //$table->dropColumn('email');
+            $table->dropSoftDeletes();
+        });
     }
 };
