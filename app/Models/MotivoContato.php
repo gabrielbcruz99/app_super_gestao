@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SiteContato extends Model
+class MotivoContato extends Model
 {
-
     use HasFactory;
 
-    protected $fillable = ['nome', 'telefone','email','motivo_contatos_id','mensagem'];
-
+    protected $fillable = ['motivo_contato'];
 }
