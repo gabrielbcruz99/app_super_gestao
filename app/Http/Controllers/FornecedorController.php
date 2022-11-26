@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Fornecedor;
 
+
 class FornecedorController extends Controller
 {
     public function index(){
@@ -14,12 +15,12 @@ class FornecedorController extends Controller
     public function listar(Request $request){
 
         $fornecedores = Fornecedor::where('nome', 'like', '%'.$request->input('nome').'%')
-        ->where('site', 'like', '%'.$request->input('site').'%')
+        ->Where('site', 'like', '%'.$request->input('site').'%')
         ->where('uf', 'like', '%'.$request->input('uf').'%')
         ->where('email', 'like', '%'.$request->input('email').'%')
-        ->get();
+        ->paginate(4);
         //dd($fornecedores);
-        return view('app.fornecedor.listar', ['fornecedores' => $fornecedores]);
+        return view('app.fornecedor.listar', ['fornecedores' => $fornecedores, 'request' => $request->all()]);
     }
 
     public function adicionar(Request $request){
@@ -74,6 +75,12 @@ class FornecedorController extends Controller
 
         $fornecedor = Fornecedor::find($id);
         return view('app.fornecedor.adicionar', ['fornecedor' => $fornecedor, 'msg' => $msg]);
+    }
+
+    public function excluir($id, $msg = ''){
+        Fornecedor::find($id)->delete();
+
+        return redirect()->route('app.fornecedor');
     }
 
 }

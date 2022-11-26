@@ -12,6 +12,6 @@ class Fornecedor extends Model
     use SoftDeletes;
 
     protected $table = 'fornecedores';
-    protected $fillable = ['nome','site,','uf','email']; // Essa variável informa quais atributos do
+    protected $fillable = ['nome','site','uf','email']; // Essa variável informa quais atributos do
     // objeto que podem ter seus valores preenchuidos atraves da tecnica de fill.
 }
