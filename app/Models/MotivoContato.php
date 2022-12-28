@@ -10,4 +10,4 @@ class MotivoContato extends Model
     use HasFactory;
 
     protected $fillable = ['motivo_contato'];
-}
+} 
